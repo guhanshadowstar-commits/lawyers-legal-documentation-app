@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #121212;
+            color: #e5e2e1;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(19, 19, 19, 0.8);
+        }
+        .kinetic-shadow {
+            box-shadow: 0 0 20px rgba(214, 255, 63, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "outline": "#8f937a",
+                        "on-secondary-container": "#b7b5b4",
+                        "tertiary": "#ffffff",
+                        "on-primary": "#293500",
+                        "on-background": "#e5e2e1",
+                        "primary-container": "#caf231",
+                        "primary": "#ffffff",
+                        "background": "#121212",
+                        "surface-container": "#1E1E1E",
+                        "on-surface": "#e5e2e1",
+                        "accent-lime": "#D6FF3F"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "24px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "32px",
+                        "stack-gap": "16px",
+                        "inline-gap": "12px",
+                        "card-padding": "24px",
+                        "container-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Space Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-stat": ["Space Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", {"lineHeight": "18px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "30px", "fontWeight": "700"}],
+                        "display-stat": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "38px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-background min-h-screen pb-32">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-container-padding py-6 glass-effect">
+<div class="flex flex-col">
+<span class="font-label-bold text-[10px] tracking-widest text-primary uppercase opacity-80">Lawyer's Legal Docs</span>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-accent-lime overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional high-contrast portrait of a senior legal partner, sharp features, dramatic rim lighting in a dark modern office setting, deep blacks and neon lime accents, premium editorial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJRsT9k72PQW7SFgTSvjIOeZ8SwckDmMt9ZFIbyPRQBO7A1uKoomBnufLe199dxhjXlyyrIwqgnvQrEapz5nd3fzXFXhLcEOLqswXJdMTrPG3iN0Uam1Z0Kn4YeuglHfBjBtESoPR3b8pK4AAk6Clvvt6NrCLxswDoOkXR2Q-OpGHJYWgCKY9E60_CEK6v8cWxkbQUTEDiOP0QauHrC0XE3suQghvrgM-ye8h-uoZLT1F_d43LuJTPcBNAh31QAUC4qeGyHwXG-Ew"/>
+</div>
+</header>
+<main class="px-container-padding mt-4">
+<!-- Header Section -->
+<section class="mb-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1">Your Case Timeline</h1>
+<p class="text-[#A0A0A0] font-body-md text-sm">Client: Harrison, J. · 12 documents · sorted by date</p>
+</section>
+<!-- Stats Row -->
+<section class="grid grid-cols-3 gap-3 mb-8">
+<div class="bg-surface-container p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="font-display-stat text-accent-lime text-2xl">12</span>
+<span class="font-label-bold text-[10px] text-white opacity-60 uppercase mt-1">Documents</span>
+</div>
+<div class="bg-surface-container p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="font-display-stat text-accent-lime text-base leading-tight">1962–21</span>
+<span class="font-label-bold text-[10px] text-white opacity-60 uppercase mt-1">Date Range</span>
+</div>
+<div class="bg-surface-container p-4 rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="font-display-stat text-accent-lime text-2xl">4</span>
+<span class="font-label-bold text-[10px] text-white opacity-60 uppercase mt-1">Surveys</span>
+</div>
+</section>
+<!-- Document List -->
+<section class="space-y-4">
+<!-- Doc Item 1 -->
+<div class="bg-surface-container p-card-padding rounded-2xl flex items-center justify-between hover:bg-surface-variant transition-colors group">
+<div class="flex flex-col gap-3">
+<div class="bg-accent-lime/10 px-3 py-1 rounded-full w-fit">
+<span class="text-accent-lime font-label-bold text-[12px]">12 MAR 1987</span>
+</div>
+<div>
+<h3 class="font-label-bold text-lg text-primary">SALE DEED</h3>
+<p class="text-[#A0A0A0] text-sm mt-1">Samuel Harrison, Edward Vane</p>
+</div>
+<div class="border border-accent-lime/40 px-2 py-0.5 rounded w-fit">
+<span class="text-accent-lime font-label-bold text-[11px]">402/B</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-accent-lime group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'opsz' 32;">chevron_right</span>
+</div>
+<!-- Doc Item 2 -->
+<div class="bg-surface-container p-card-padding rounded-2xl flex items-center justify-between hover:bg-surface-variant transition-colors group">
+<div class="flex flex-col gap-3">
+<div class="bg-accent-lime/10 px-3 py-1 rounded-full w-fit">
+<span class="text-accent-lime font-label-bold text-[12px]">05 JUN 1994</span>
+</div>
+<div>
+<h3 class="font-label-bold text-lg text-primary">MORTGAGE RELEASE</h3>
+<p class="text-[#A0A0A0] text-sm mt-1">Bank of Harrison, Julia H.</p>
+</div>
+<div class="border border-accent-lime/40 px-2 py-0.5 rounded w-fit">
+<span class="text-accent-lime font-label-bold text-[11px]">118/C</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-accent-lime group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Doc Item 3 -->
+<div class="bg-surface-container p-card-padding rounded-2xl flex items-center justify-between hover:bg-surface-variant transition-colors group">
+<div class="flex flex-col gap-3">
+<div class="bg-accent-lime/10 px-3 py-1 rounded-full w-fit">
+<span class="text-accent-lime font-label-bold text-[12px]">28 OCT 2015</span>
+</div>
+<div>
+<h3 class="font-label-bold text-lg text-primary">GIFT DEED</h3>
+<p class="text-[#A0A0A0] text-sm mt-1">Julian Harrison, Sarah Harrison</p>
+</div>
+<div class="border border-accent-lime/40 px-2 py-0.5 rounded w-fit">
+<span class="text-accent-lime font-label-bold text-[11px]">402/B</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-accent-lime group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Doc Item 4 -->
+<div class="bg-surface-container p-card-padding rounded-2xl flex items-center justify-between hover:bg-surface-variant transition-colors group">
+<div class="flex flex-col gap-3">
+<div class="bg-accent-lime/10 px-3 py-1 rounded-full w-fit">
+<span class="text-accent-lime font-label-bold text-[12px]">14 JAN 2021</span>
+</div>
+<div>
+<h3 class="font-label-bold text-lg text-primary">TAX CERTIFICATE</h3>
+<p class="text-[#A0A0A0] text-sm mt-1">Municipal Corp., Harrison Est.</p>
+</div>
+<div class="border border-accent-lime/40 px-2 py-0.5 rounded w-fit">
+<span class="text-accent-lime font-label-bold text-[11px]">002/F</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-accent-lime group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 h-24 flex justify-around items-center px-container-padding glass-effect pb-safe">
+<div class="flex flex-col items-center justify-center gap-1 text-on-secondary-container hover:text-accent-lime transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-bold text-[10px]">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-accent-lime">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-bold text-[10px]">Documents</span>
+</div>
+<!-- FAB Center -->
+<div class="relative -top-8">
+<button class="bg-accent-lime w-16 h-16 rounded-full flex items-center justify-center kinetic-shadow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-black text-3xl font-bold" data-icon="add">add</span>
+</button>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-on-secondary-container hover:text-accent-lime transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-bold text-[10px]">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-on-secondary-container hover:text-accent-lime transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-bold text-[10px]">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for list items
+        document.querySelectorAll('.bg-surface-container').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.1s ease';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

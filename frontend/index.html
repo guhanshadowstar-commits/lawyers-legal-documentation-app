@@ -1,97 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <title>LegalCore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@500&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 <style>
-  :root { --bg:#121212; --card:#1e1e1e; --border:#2c2c2c; --lime:#d6ff3f; --text:#ffffff; --muted-text:#a0a0a0; }
-  * { box-sizing: border-box; }
-  body { font-family: -apple-system, "Inter", "Helvetica Neue", Arial, sans-serif; background: var(--bg); margin: 0; color: var(--text); }
-  header { background: #0a0a0a; color: var(--lime); padding: 20px 32px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
-  header svg { flex-shrink: 0; }
-  header h1 { margin: 0; font-size: 24px; letter-spacing: 0.5px; font-weight: 800; text-transform: uppercase; }
-  header p { margin: 0; color: var(--muted-text); font-size: 13px; font-weight: 400; text-transform: none; }
-  header .titles { display: flex; flex-direction: column; }
-  main { max-width: 960px; margin: 28px auto; padding: 0 20px 60px; }
-  section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
-  section h2 { margin-top: 0; font-size: 16px; color: var(--text); border-bottom: 2px solid var(--lime); display: inline-block; padding-bottom: 4px; }
-  label { display: block; font-size: 13px; margin: 12px 0 4px; color: var(--muted-text); }
-  input[type=text] { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: #161616; color: var(--text); }
-  input[type=text]:focus { outline: none; border-color: var(--lime); }
-  input[type=file] { margin-top: 4px; color: var(--muted-text); }
-  button { background: var(--lime); color: #111; border: none; padding: 10px 20px; border-radius: 999px; cursor: pointer; font-size: 14px; font-weight: 700; margin-top: 14px; }
-  button:hover { background: #c2eb2e; }
-  button:disabled { background: #444; color: #888; cursor: not-allowed; }
-  table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { background: transparent; color: var(--lime); font-weight: 700; }
-  .pill { display:inline-block; background:#2a2a2a; border: 1px solid var(--lime); color: var(--lime); border-radius:999px; padding:2px 10px; font-size:11px; margin-right:4px; }
-  .status { font-size: 13px; margin-top: 10px; color: var(--muted-text); }
-  .status.error { color: #ff6b6b; }
-  .status.ok { color: var(--lime); }
-  pre.opinion { white-space: pre-wrap; font-family: Georgia, serif; background: #fdfcf8; color: #222; border: 1px solid var(--border); padding: 20px; border-radius: 12px; line-height: 1.5; }
-  .muted { color: var(--muted-text); font-size: 12px; }
+  body { background-color: #121212; color: #e5e2e1; font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  .glass { backdrop-filter: blur(12px); background: rgba(19,19,19,0.8); }
+  .neon-glow { box-shadow: 0 0 20px rgba(214,255,63,0.3); }
+  .timeline-line { background: linear-gradient(to bottom, #D6FF3F 0%, #D6FF3F 100%); width: 2px; box-shadow: 0 0 15px rgba(214,255,63,0.4); }
+  .opinion-scroll::-webkit-scrollbar { width: 4px; }
+  .opinion-scroll::-webkit-scrollbar-thumb { background: rgba(202,242,49,0.3); border-radius: 10px; }
+  .hidden-section { display: none; }
+  .spin-ring circle { transform-origin: 50% 50%; animation: spin 1.4s linear infinite; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 </style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          background: "#121212",
+          surface: "#131313",
+          "surface-container": "#1E1E1E",
+          "surface-container-high": "#2a2a2a",
+          "accent-lime": "#D6FF3F",
+          "on-secondary-container": "#b7b5b4",
+        },
+        fontFamily: {
+          headline: ["Hanken Grotesk"],
+          mono: ["JetBrains Mono"],
+          serif: ["Lora", "serif"],
+        },
+      },
+    },
+  }
+</script>
 </head>
-<body>
+<body class="min-h-screen pb-20">
 
-<header>
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M14 13 2.85 21.15a1 1 0 0 0 0 1.41l.59.59a1 1 0 0 0 1.41 0L13 14.5"/>
-    <path d="m16 16 6-6"/>
-    <path d="m8 8 6-6"/>
-    <path d="m9 7 8 8"/>
-    <path d="m21 11-8-8"/>
-  </svg>
-  <div class="titles">
-    <h1>LegalCore</h1>
-    <p>Upload a client's document batch, review the extracted chronology, and draft an opinion by survey number.</p>
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 md:px-10 py-4 glass border-b border-white/5">
+  <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined text-accent-lime" style="font-size:26px;">gavel</span>
+    <span class="font-headline font-extrabold text-xl tracking-tight text-accent-lime">LEGALCORE</span>
   </div>
+  <span class="font-mono text-[10px] tracking-widest text-on-secondary-container uppercase opacity-70">Legal Documentation</span>
 </header>
 
-<main>
+<main class="max-w-3xl mx-auto px-5 md:px-10 pt-8">
 
-  <section id="upload-section">
-    <h2>1. Upload a client's document batch</h2>
-    <label for="client_name">Client name</label>
-    <input type="text" id="client_name" placeholder="e.g. R. Subramaniam" />
+  <!-- Screen 1: New Case File -->
+  <section id="upload-section" class="mb-12">
+    <h1 class="font-headline font-extrabold text-3xl text-white mb-2">Start a New Case</h1>
+    <p class="text-on-secondary-container mb-6">Upload your client's documents — we'll read, sort, and organize them automatically.</p>
 
-    <label for="files">Documents (PDF, JPG, PNG — select multiple)</label>
-    <input type="file" id="files" multiple accept=".pdf,.png,.jpg,.jpeg" />
+    <div class="bg-surface-container rounded-2xl p-6 flex flex-col gap-5 border border-white/5 shadow-xl">
+      <div class="flex flex-col gap-2">
+        <label class="font-mono text-[11px] uppercase tracking-wide text-on-secondary-container">Client Name</label>
+        <input id="client_name" type="text" placeholder="e.g. R. Subramaniam"
+          class="bg-[#1A1A1A] border border-[#2C2C2C] rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-accent-lime focus:border-accent-lime transition-all" />
+      </div>
 
-    <button id="upload_btn">Upload &amp; Process</button>
-    <div class="status" id="upload_status"></div>
+      <div id="drop-zone" class="relative border-2 border-dashed border-[#2C2C2C] rounded-2xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer hover:border-accent-lime/50 transition-colors bg-[#1A1A1A]/50">
+        <div class="w-14 h-14 rounded-full bg-accent-lime/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-accent-lime text-3xl">upload</span>
+        </div>
+        <p class="font-medium text-white">Drag files or click to upload</p>
+        <p class="text-xs text-on-secondary-container">PDF, JPG, PNG — multiple files supported</p>
+        <input id="files" type="file" multiple accept=".pdf,.png,.jpg,.jpeg" class="absolute inset-0 opacity-0 cursor-pointer" />
+      </div>
+
+      <div id="file_chips" class="flex flex-wrap gap-2"></div>
+
+      <button id="upload_btn" class="w-full bg-accent-lime text-black font-extrabold py-4 rounded-full mt-1 active:scale-95 transition-transform hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed">
+        Process Documents
+      </button>
+
+      <div id="upload_progress" class="hidden-section flex items-center gap-3 justify-center mt-1">
+        <svg class="spin-ring w-6 h-6" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#2C2C2C" stroke-width="3"></circle>
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#D6FF3F" stroke-width="3" stroke-dasharray="40 100" stroke-linecap="round"></circle>
+        </svg>
+        <span id="upload_status_text" class="text-sm text-on-secondary-container">Reading documents...</span>
+      </div>
+      <div id="upload_status" class="text-sm"></div>
+    </div>
   </section>
 
-  <section id="documents-section" style="display:none;">
-    <h2>2. Batch documents (chronological order)</h2>
-    <p class="muted">Batch ID: <span id="batch_id_display"></span></p>
-    <table>
-      <thead>
-        <tr><th>Date</th><th>Type</th><th>Parties</th><th>Survey No.</th><th>Source file</th></tr>
-      </thead>
-      <tbody id="documents_table_body"></tbody>
-    </table>
+  <!-- Screen 2: Document Register -->
+  <section id="documents-section" class="mb-12 hidden-section">
+    <h2 class="font-headline font-extrabold text-2xl text-white mb-1">Your Case Timeline</h2>
+    <p id="register_meta" class="text-on-secondary-container text-sm mb-6"></p>
+
+    <div class="grid grid-cols-3 gap-3 mb-6">
+      <div class="bg-surface-container p-4 rounded-2xl flex flex-col items-center text-center">
+        <span id="stat_count" class="font-headline font-extrabold text-accent-lime text-2xl">0</span>
+        <span class="font-mono text-[10px] text-white/60 uppercase mt-1">Documents</span>
+      </div>
+      <div class="bg-surface-container p-4 rounded-2xl flex flex-col items-center text-center">
+        <span id="stat_range" class="font-headline font-extrabold text-accent-lime text-base leading-tight">—</span>
+        <span class="font-mono text-[10px] text-white/60 uppercase mt-1">Date Range</span>
+      </div>
+      <div class="bg-surface-container p-4 rounded-2xl flex flex-col items-center text-center">
+        <span id="stat_surveys" class="font-headline font-extrabold text-accent-lime text-2xl">0</span>
+        <span class="font-mono text-[10px] text-white/60 uppercase mt-1">Surveys</span>
+      </div>
+    </div>
+
+    <div id="documents_list" class="space-y-4"></div>
   </section>
 
-  <section id="survey-section" style="display:none;">
-    <h2>3. Trace a survey number</h2>
-    <label for="survey_number">Survey number</label>
-    <input type="text" id="survey_number" placeholder="e.g. 2/A" />
-    <button id="survey_btn">Find transaction chain</button>
-    <div class="status" id="survey_status"></div>
-    <table id="survey_table" style="display:none;">
-      <thead>
-        <tr><th>Date</th><th>Type</th><th>Parties</th><th>Source file</th></tr>
-      </thead>
-      <tbody id="survey_table_body"></tbody>
-    </table>
-    <button id="opinion_btn" style="display:none;">Draft legal opinion for this survey number</button>
+  <!-- Screen 3: Trace a Survey Number -->
+  <section id="survey-section" class="mb-12 hidden-section">
+    <h2 class="font-headline font-extrabold text-2xl text-white mb-1">Chain of Title</h2>
+    <p class="text-on-secondary-container text-sm mb-6">Tracing provenance and legal history for individual land parcels.</p>
+
+    <div class="relative group mb-8">
+      <div class="flex items-center bg-surface-container-high rounded-full p-2 border-2 border-transparent focus-within:border-accent-lime transition-all">
+        <span class="material-symbols-outlined text-on-secondary-container ml-3">search</span>
+        <input id="survey_number" type="text" placeholder="Enter survey number, e.g. 2/A"
+          class="bg-transparent border-none focus:ring-0 text-white w-full px-3 placeholder:text-white/30" />
+        <button id="survey_btn" class="bg-accent-lime text-black font-mono text-xs font-extrabold px-6 py-3 rounded-full hover:opacity-90 active:scale-95 transition-all">SEARCH</button>
+      </div>
+    </div>
+
+    <div id="survey_status" class="text-sm mb-4"></div>
+
+    <div id="survey_timeline" class="relative pl-8 hidden-section">
+      <div class="absolute left-[3px] top-4 bottom-4 w-0.5 timeline-line rounded-full"></div>
+      <div id="survey_entries" class="space-y-6"></div>
+    </div>
+
+    <button id="opinion_btn" class="hidden-section w-full bg-accent-lime text-black font-extrabold py-5 rounded-full mt-8 hover:scale-[1.01] active:scale-95 transition-transform neon-glow flex items-center justify-center gap-3">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+      <span id="opinion_btn_label">Draft Legal Opinion</span>
+    </button>
   </section>
 
-  <section id="opinion-section" style="display:none;">
-    <h2>4. Draft legal opinion</h2>
-    <pre class="opinion" id="opinion_text"></pre>
+  <!-- Screen 4: Legal Opinion Draft -->
+  <section id="opinion-section" class="mb-20 hidden-section">
+    <h2 class="font-headline font-extrabold text-2xl text-white mb-6">Legal Opinion — Draft</h2>
+
+    <div class="w-full bg-[#fdfcf8] text-black rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-accent-lime"></div>
+      <div class="flex items-center justify-between mb-2">
+        <span id="opinion_survey_tag" class="bg-accent-lime text-black px-3 py-1 rounded-full font-mono text-xs font-bold">Survey No.</span>
+        <span id="opinion_date" class="font-mono text-xs text-black/50"></span>
+      </div>
+      <h3 class="font-headline font-bold text-2xl mb-6">Legal Opinion on Title</h3>
+      <div id="opinion_text" class="font-serif leading-relaxed text-black/90 opinion-scroll max-h-[530px] overflow-y-auto pr-2 whitespace-pre-wrap"></div>
+    </div>
+
+    <div class="flex gap-4 mt-6">
+      <button id="export_btn" class="flex-1 bg-accent-lime text-black font-extrabold py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+        <span class="material-symbols-outlined">picture_as_pdf</span> Export
+      </button>
+      <button id="edit_btn" class="flex-1 border-2 border-white/20 text-white font-extrabold py-4 rounded-full flex items-center justify-center gap-2 hover:bg-white/10 transition-all active:scale-95">
+        <span class="material-symbols-outlined">edit</span> Edit
+      </button>
+    </div>
   </section>
 
 </main>
@@ -101,66 +174,102 @@ const API = '';
 let currentBatchId = null;
 let currentSurveyNumber = null;
 
+// ---- File chip handling ----
+const filesInput = document.getElementById('files');
+const fileChips = document.getElementById('file_chips');
+
+function renderChips() {
+  fileChips.innerHTML = '';
+  [...filesInput.files].forEach((f, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'bg-[#2C2C2C] text-white px-3 py-1.5 rounded-full flex items-center gap-2 text-xs border border-white/5';
+    const icon = f.type === 'application/pdf' ? 'description' : 'image';
+    chip.innerHTML = `<span class="material-symbols-outlined text-[14px]">${icon}</span><span>${f.name}</span>`;
+    fileChips.appendChild(chip);
+  });
+}
+filesInput.addEventListener('change', renderChips);
+
+// ---- Upload ----
 const uploadBtn = document.getElementById('upload_btn');
 const uploadStatus = document.getElementById('upload_status');
+const uploadProgress = document.getElementById('upload_progress');
 
 uploadBtn.addEventListener('click', async () => {
   const clientName = document.getElementById('client_name').value.trim();
-  const fileInput = document.getElementById('files');
-
   if (!clientName) { setStatus(uploadStatus, 'Please enter a client name.', true); return; }
-  if (!fileInput.files.length) { setStatus(uploadStatus, 'Please select at least one document.', true); return; }
+  if (!filesInput.files.length) { setStatus(uploadStatus, 'Please select at least one document.', true); return; }
 
   const formData = new FormData();
-  for (const f of fileInput.files) formData.append('files', f);
+  for (const f of filesInput.files) formData.append('files', f);
 
   uploadBtn.disabled = true;
-  setStatus(uploadStatus, `Processing ${fileInput.files.length} document(s)... this calls AI per document and may take a while.`, false);
+  uploadProgress.classList.remove('hidden-section');
+  setStatus(uploadStatus, '', false);
 
   try {
-    const res = await fetch(`${API}/batches?client_name=${encodeURIComponent(clientName)}`, {
-      method: 'POST',
-      body: formData,
-    });
+    const res = await fetch(`${API}/batches?client_name=${encodeURIComponent(clientName)}`, { method: 'POST', body: formData });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.detail || `Upload failed (HTTP ${res.status})`);
     }
     const data = await res.json();
     currentBatchId = data.batch_id;
-    setStatus(uploadStatus, `Done. Batch #${currentBatchId}: ${data.documents.length} document(s) processed.`, false, true);
-    await loadDocuments(currentBatchId);
-    document.getElementById('survey-section').style.display = 'block';
+    setStatus(uploadStatus, `Done — Batch #${currentBatchId}: ${data.documents.length} document(s) processed.`, false, true);
+    await loadDocuments(currentBatchId, clientName);
+    document.getElementById('documents-section').classList.remove('hidden-section');
+    document.getElementById('survey-section').classList.remove('hidden-section');
+    document.getElementById('documents-section').scrollIntoView({ behavior: 'smooth' });
   } catch (e) {
     setStatus(uploadStatus, e.message, true);
   } finally {
     uploadBtn.disabled = false;
+    uploadProgress.classList.add('hidden-section');
   }
 });
 
-async function loadDocuments(batchId) {
+async function loadDocuments(batchId, clientName) {
   const res = await fetch(`${API}/batches/${batchId}/documents`);
   if (!res.ok) return;
   const docs = await res.json();
-  document.getElementById('batch_id_display').textContent = batchId;
-  const tbody = document.getElementById('documents_table_body');
-  tbody.innerHTML = '';
+
+  document.getElementById('register_meta').textContent = `Client: ${clientName} · ${docs.length} documents · sorted by date`;
+  document.getElementById('stat_count').textContent = docs.length;
+
+  const dates = docs.map(d => d.doc_date).filter(Boolean).sort();
+  document.getElementById('stat_range').textContent = dates.length ? `${dates[0].slice(0,4)}–${dates[dates.length-1].slice(0,4)}` : '—';
+
+  const surveySet = new Set();
+  docs.forEach(d => (d.survey_numbers || []).forEach(s => surveySet.add(s)));
+  document.getElementById('stat_surveys').textContent = surveySet.size;
+
+  const list = document.getElementById('documents_list');
+  list.innerHTML = '';
   for (const d of docs) {
-    const parties = (d.parties || []).map(p => `${p.name} (${p.role})`).join(', ');
-    const surveys = (d.survey_numbers || []).map(s => `<span class="pill">${s}</span>`).join(' ');
-    tbody.innerHTML += `<tr>
-      <td>${d.doc_date || '—'}</td>
-      <td>${d.doc_type || '—'}</td>
-      <td>${parties || '—'}</td>
-      <td>${surveys || '—'}</td>
-      <td class="muted">${d.source_filename}</td>
-    </tr>`;
+    const parties = (d.parties || []).map(p => `${p.name} (${p.role})`).join(', ') || '—';
+    const surveyTags = (d.survey_numbers || []).map(s =>
+      `<span class="border border-accent-lime/40 text-accent-lime font-mono text-[11px] px-2 py-0.5 rounded">${s}</span>`
+    ).join(' ');
+    const card = document.createElement('div');
+    card.className = 'bg-surface-container p-5 rounded-2xl flex items-center justify-between hover:bg-surface-container-high transition-colors';
+    card.innerHTML = `
+      <div class="flex flex-col gap-2">
+        <span class="bg-accent-lime/10 text-accent-lime font-mono text-[11px] px-3 py-1 rounded-full w-fit">${(d.doc_date || 'UNDATED').toUpperCase()}</span>
+        <h3 class="font-bold text-white">${(d.doc_type || 'UNKNOWN').toUpperCase()}</h3>
+        <p class="text-on-secondary-container text-sm">${parties}</p>
+        <div class="flex gap-1 flex-wrap">${surveyTags}</div>
+      </div>
+      <span class="material-symbols-outlined text-accent-lime">chevron_right</span>`;
+    list.appendChild(card);
   }
-  document.getElementById('documents-section').style.display = 'block';
 }
 
+// ---- Survey trace ----
 const surveyBtn = document.getElementById('survey_btn');
 const surveyStatus = document.getElementById('survey_status');
+const surveyTimeline = document.getElementById('survey_timeline');
+const surveyEntries = document.getElementById('survey_entries');
+const opinionBtn = document.getElementById('opinion_btn');
 
 surveyBtn.addEventListener('click', async () => {
   const surveyNumber = document.getElementById('survey_number').value.trim();
@@ -168,8 +277,8 @@ surveyBtn.addEventListener('click', async () => {
   if (!surveyNumber) { setStatus(surveyStatus, 'Enter a survey number.', true); return; }
 
   setStatus(surveyStatus, 'Searching...', false);
-  document.getElementById('survey_table').style.display = 'none';
-  document.getElementById('opinion_btn').style.display = 'none';
+  surveyTimeline.classList.add('hidden-section');
+  opinionBtn.classList.add('hidden-section');
 
   try {
     const res = await fetch(`${API}/batches/${currentBatchId}/survey/${encodeURIComponent(surveyNumber)}`);
@@ -178,53 +287,68 @@ surveyBtn.addEventListener('click', async () => {
       throw new Error(err.detail || 'No documents found for this survey number.');
     }
     const rows = await res.json();
-    const tbody = document.getElementById('survey_table_body');
-    tbody.innerHTML = '';
+    surveyEntries.innerHTML = '';
     for (const r of rows) {
-      const parties = JSON.parse(r.parties_json || '[]').map(p => `${p.name} (${p.role})`).join(', ');
-      tbody.innerHTML += `<tr>
-        <td>${r.doc_date || '—'}</td>
-        <td>${r.doc_type || '—'}</td>
-        <td>${parties || '—'}</td>
-        <td class="muted">${r.source_filename}</td>
-      </tr>`;
+      const parties = JSON.parse(r.parties_json || '[]').map(p => `${p.name} (${p.role})`).join(', ') || '—';
+      const entry = document.createElement('div');
+      entry.className = 'relative';
+      entry.innerHTML = `
+        <div class="absolute -left-[29px] top-5 w-4 h-4 bg-accent-lime rounded-full border-4 border-background"></div>
+        <div class="bg-surface-container rounded-xl p-5 border border-white/5">
+          <div class="flex justify-between items-start gap-4 mb-2">
+            <span class="font-bold text-white">${r.doc_date || 'Undated'}</span>
+            <span class="font-mono text-[11px] px-3 py-1 bg-accent-lime/10 text-accent-lime rounded-full border border-accent-lime/20">${(r.doc_type || '').toUpperCase()}</span>
+          </div>
+          <p class="text-white/90 text-sm mb-1">${parties}</p>
+          <p class="text-on-secondary-container text-xs">${r.property_schedule_text || ''}</p>
+        </div>`;
+      surveyEntries.appendChild(entry);
     }
-    document.getElementById('survey_table').style.display = 'table';
+    surveyTimeline.classList.remove('hidden-section');
     currentSurveyNumber = surveyNumber;
-    document.getElementById('opinion_btn').style.display = 'inline-block';
+    document.getElementById('opinion_btn_label').textContent = `Draft Legal Opinion for Survey ${surveyNumber}`;
+    opinionBtn.classList.remove('hidden-section');
     setStatus(surveyStatus, `Found ${rows.length} document(s) for survey number ${surveyNumber}.`, false, true);
   } catch (e) {
     setStatus(surveyStatus, e.message, true);
   }
 });
 
-document.getElementById('opinion_btn').addEventListener('click', async () => {
-  const btn = document.getElementById('opinion_btn');
-  btn.disabled = true;
-  btn.textContent = 'Drafting...';
+opinionBtn.addEventListener('click', async () => {
+  opinionBtn.disabled = true;
+  const label = document.getElementById('opinion_btn_label');
+  const originalLabel = label.textContent;
+  label.textContent = 'Drafting...';
   try {
-    const res = await fetch(`${API}/batches/${currentBatchId}/survey/${encodeURIComponent(currentSurveyNumber)}/opinion`, {
-      method: 'POST',
-    });
+    const res = await fetch(`${API}/batches/${currentBatchId}/survey/${encodeURIComponent(currentSurveyNumber)}/opinion`, { method: 'POST' });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.detail || 'Opinion drafting failed.');
     }
     const data = await res.json();
+    document.getElementById('opinion_survey_tag').textContent = `Survey No. ${data.survey_number}`;
+    document.getElementById('opinion_date').textContent = `Drafted ${new Date().toLocaleDateString()}`;
     document.getElementById('opinion_text').textContent = data.opinion;
-    document.getElementById('opinion-section').style.display = 'block';
+    document.getElementById('opinion-section').classList.remove('hidden-section');
     document.getElementById('opinion-section').scrollIntoView({ behavior: 'smooth' });
   } catch (e) {
     setStatus(surveyStatus, e.message, true);
   } finally {
-    btn.disabled = false;
-    btn.textContent = 'Draft legal opinion for this survey number';
+    opinionBtn.disabled = false;
+    label.textContent = originalLabel;
   }
+});
+
+document.getElementById('export_btn').addEventListener('click', () => window.print());
+document.getElementById('edit_btn').addEventListener('click', () => {
+  const el = document.getElementById('opinion_text');
+  el.contentEditable = el.contentEditable === 'true' ? 'false' : 'true';
+  el.focus();
 });
 
 function setStatus(el, message, isError, isOk) {
   el.textContent = message;
-  el.className = 'status' + (isError ? ' error' : isOk ? ' ok' : '');
+  el.className = isError ? 'text-sm text-red-400' : isOk ? 'text-sm text-accent-lime' : 'text-sm text-on-secondary-container';
 }
 </script>
 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Legal Opinion — Draft</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config verbatum -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#393939",
+                    "tertiary": "#ffffff",
+                    "on-secondary-fixed": "#1b1b1c",
+                    "inverse-on-surface": "#313030",
+                    "primary-container": "#caf231",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container-highest": "#353534",
+                    "background": "#131313",
+                    "primary-fixed-dim": "#afd500",
+                    "on-tertiary": "#303030",
+                    "surface-tint": "#afd500",
+                    "primary": "#ffffff",
+                    "on-primary-fixed": "#171e00",
+                    "on-primary-container": "#586c00",
+                    "secondary": "#c8c6c5",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#656464",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "outline": "#8f937a",
+                    "tertiary-container": "#e4e2e1",
+                    "on-error": "#690005",
+                    "primary-fixed": "#caf231",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-high": "#2a2a2a",
+                    "surface": "#131313",
+                    "on-surface": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#474746",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-background": "#e5e2e1",
+                    "secondary-container": "#474746",
+                    "surface-variant": "#353534",
+                    "on-primary-fixed-variant": "#3d4c00",
+                    "surface-container-low": "#1c1b1b",
+                    "outline-variant": "#454934",
+                    "on-primary": "#293500",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "inverse-primary": "#526600",
+                    "tertiary-fixed": "#e4e2e1",
+                    "surface-container": "#201f1f",
+                    "on-secondary": "#303030",
+                    "surface-dim": "#131313",
+                    "on-secondary-container": "#b7b5b4",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-surface-variant": "#c5c9ae"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "card-gap": "24px",
+                    "container-padding-mobile": "20px",
+                    "container-padding-desktop": "40px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Hanken Grotesk"],
+                    "stat-value": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "serif": ["Lora", "serif"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "stat-value": ["40px", {"lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #121212;
+            color: #e5e2e1;
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .document-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .document-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .document-scroll::-webkit-scrollbar-thumb {
+            background: rgba(202, 242, 49, 0.3);
+            border-radius: 10px;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background docked full-width top-0 z-40">
+<div class="flex justify-between items-center w-full px-container-padding-mobile py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a legal consultant named Lester, wearing a sharp charcoal suit against a clean, softly lit minimalist architectural background. The image has a high-contrast tech aesthetic with cool tones and subtle neon green highlights reflecting off a glass surface nearby, matching a premium dark-mode UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbgQz6Ybv_MLn_dbr_TOQCqKaaibAUuq7sRyCvYWCB6fZj3cpDKpNrrKTZt7G1FOLT8ikDDInJ96OezEWbBNv6x5p4TEWIyaBZidhcvz--UoER7B6afXseWmgVHlCB_OkJ1ZvizWxfqGEPabkHpNoMv_KCMN1X7plD_DGsy2mj8xJ3ZDsY4IWIhrySalz2kjMhkhzhAOJ7b0KZNd9kh3d09ika-42WA7Y3in86_W2HiER1_4CfmTZDHqJPDWUALmTzWOsPSnjkWxc"/>
+</div>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary">Legal Opinion — Draft</h1>
+</div>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 p-2 rounded-full transition-transform active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-container-padding-mobile pt-4 pb-32 flex flex-col items-center">
+<!-- Document Container -->
+<div class="w-full max-w-2xl bg-tertiary text-on-tertiary rounded-lg shadow-2xl p-8 mb-8 relative overflow-hidden transition-all duration-500 hover:shadow-primary-container/10">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary-container"></div>
+<!-- Document Header -->
+<div class="flex flex-col gap-4 mb-10">
+<div class="flex items-center justify-between">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-md text-label-md">Survey No. 2/A</span>
+<span class="text-on-tertiary-container font-label-md text-label-md">Ref: VOLT-2024-089</span>
+</div>
+<h2 class="font-headline-lg text-black">Legal Opinion on Title</h2>
+<div class="flex items-center gap-2 text-on-tertiary-container">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="font-label-md text-label-md">Drafted 24 May 2024</span>
+</div>
+</div>
+<!-- Document Body -->
+<div class="space-y-8 font-serif leading-relaxed text-on-tertiary/90 document-scroll max-h-[530px] overflow-y-auto pr-4">
+<section>
+<h3 class="font-headline-md text-black mb-3 text-[20px]">1. Description of Property</h3>
+<p class="text-body-md">The property under investigation comprises a parcel of land measuring approximately 4.5 acres situated in the industrial hub of Sector 12, characterized by its clear boundaries and accessibility to the primary highway artery. The plot is currently zoned for commercial development.</p>
+</section>
+<section>
+<h3 class="font-headline-md text-black mb-3 text-[20px]">2. Chronology of Title</h3>
+<p class="text-body-md">Title history spans four decades, originating from the initial government allotment in 1984. Subsequent transfers via registered sale deeds (1992, 2005) have been verified against the Registrar's digital records to ensure continuity and legitimacy of the chain of custody.</p>
+</section>
+<section>
+<h3 class="font-headline-md text-black mb-3 text-[20px]">3. Present Ownership</h3>
+<p class="text-body-md">The current owner of record is Kinetic Volt Holdings Corp. Verification of the recent mutation records indicates that all property taxes are current, and the owner maintains full possessory rights as of the date of this draft.</p>
+</section>
+<section>
+<h3 class="font-headline-md text-black mb-3 text-[20px]">4. Encumbrances</h3>
+<p class="text-body-md">A comprehensive search conducted at the Sub-Registrar's Office for the past 30 years reveals no outstanding mortgages, liens, or legal attachments. The certificate of non-encumbrance is pending final verification for the current fiscal quarter.</p>
+</section>
+<section>
+<h3 class="font-headline-md text-black mb-3 text-[20px]">5. Observations</h3>
+<p class="text-body-md italic">Note: Minor discrepancy found in boundary wall alignment on the Eastern flank. Recommended on-site survey to reconcile physical dimensions with the cadastral map before final execution of the deed.</p>
+</section>
+<section>
+<h3 class="font-headline-md text-black mb-3 text-[20px]">6. Opinion</h3>
+<p class="text-body-md font-bold">Based on the provided documentation and independent verification, the title is considered Marketable and Free from reasonable doubt, subject to the resolution of the boundary alignment mentioned in section 5.</p>
+</section>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 w-full max-w-2xl px-2">
+<button class="flex-1 bg-primary-container text-on-primary-container font-extrabold py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all duration-300 transform active:scale-90 hover:shadow-[0_0_20px_rgba(202,242,49,0.4)]">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                Export as PDF
+            </button>
+<button class="flex-1 border-2 border-white/20 text-white font-extrabold py-4 px-8 rounded-full flex items-center justify-center gap-3 hover:bg-white/10 transition-all active:scale-95">
+<span class="material-symbols-outlined">edit</span>
+                Edit
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 bg-surface-container/90 glass-nav">
+<!-- Home -->
+<a class="text-on-tertiary-container dark:text-on-tertiary-container flex flex-col items-center justify-center hover:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<!-- Menu -->
+<a class="text-on-tertiary-container dark:text-on-tertiary-container flex flex-col items-center justify-center hover:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+</a>
+<!-- FAB (Kinetic Button) -->
+<div class="relative -top-8">
+<button class="bg-primary-container text-on-primary-container w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(202,242,49,0.4)] transition-all duration-300 transform active:scale-90">
+<span class="material-symbols-outlined scale-125" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+<!-- Leaderboard -->
+<a class="text-on-tertiary-container dark:text-on-tertiary-container flex flex-col items-center justify-center hover:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+</a>
+<!-- Events/Active -->
+<a class="text-primary dark:text-primary flex flex-col items-center justify-center hover:opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for the document card
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.bg-tertiary');
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 50;
+                const rotateY = (centerX - x) / 50;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Case File | Lawyer's Legal Docs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700;800&family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&family=Space+Grotesk:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        /* Custom hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed": "#e4e2e1",
+                    "surface-dim": "#131313",
+                    "surface-bright": "#393939",
+                    "surface-container-low": "#1c1b1b",
+                    "secondary-fixed": "#e5e2e1",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-variant": "#353534",
+                    "on-secondary-fixed-variant": "#474746",
+                    "secondary": "#c8c6c5",
+                    "surface-container-highest": "#353534",
+                    "primary-fixed": "#caf231",
+                    "outline-variant": "#454934",
+                    "on-primary-fixed": "#171e00",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-secondary": "#303030",
+                    "inverse-primary": "#526600",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "on-primary": "#293500",
+                    "surface-tint": "#afd500",
+                    "on-primary-container": "#586c00",
+                    "on-tertiary": "#303030",
+                    "on-secondary-container": "#b7b5b4",
+                    "background": "#121212",
+                    "error": "#ffb4ab",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "primary-container": "#D6FF3F",
+                    "on-secondary-fixed": "#1b1b1c",
+                    "secondary-container": "#474746",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "on-tertiary-container": "#656464",
+                    "on-surface": "#e5e2e1",
+                    "outline": "#8f937a",
+                    "on-background": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-primary-fixed-variant": "#3d4c00",
+                    "tertiary-container": "#e4e2e1",
+                    "inverse-on-surface": "#313030",
+                    "tertiary": "#ffffff",
+                    "surface-container-high": "#2a2a2a",
+                    "surface": "#1E1E1E",
+                    "primary-fixed-dim": "#afd500",
+                    "primary": "#ffffff",
+                    "on-surface-variant": "#c5c9ae",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#c8c6c5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "24px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-margin": "32px",
+                    "inline-gap": "12px",
+                    "container-padding": "20px",
+                    "stack-gap": "16px",
+                    "card-padding": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-bold": ["Space Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "display-stat": ["Space Grotesk"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "38px", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "18px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "30px", "fontWeight": "700"}],
+                    "display-stat": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-section-margin py-4 fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md">
+<div class="flex flex-col">
+<span class="font-label-bold text-[10px] tracking-widest text-primary/60 uppercase">Lawyer's Legal Docs</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container active:scale-95 transition-transform cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional high-fidelity studio portrait of a corporate lawyer in a sharp black suit against a dark charcoal background. The lighting is dramatic and cinematic, highlighting facial features with a cool rim light. The overall aesthetic is ultra-premium, modern, and trustworthy, perfectly fitting a high-end fintech and legal crossover application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEGnjXx3-2wf9tn31IPNc0Ly86sOwWbza5mgdb8hcnRBCgkkR1mNLyy43_7MIayqkijdO_0R_eZ_1HxG9wUb63INfdZJAtkn0USBX1XDRQqF1whA8hhaytLdjaDgaiER-6Zrdh4TTfyAbYZqcopTWh7b2A3A9yfF4bEPdygIzlqoOtUpPXh4BTpJwKbY0gmdb6PS1OGyDHmnQLyDtHkIsFc6rzNBRHKiaMz845vq18dtOjpMRCmwBtY-sb4x3xHHCBkfTfJ-ncltE"/>
+</div>
+</header>
+<main class="pt-24 px-container-padding max-w-lg mx-auto">
+<!-- Heading Section -->
+<section class="mb-stack-gap">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">Start a New Case</h1>
+<p class="text-[#A0A0A0] font-body-md leading-relaxed">
+                Upload your client's documents — we'll read, sort, and organize them automatically.
+            </p>
+</section>
+<!-- Main Form Card -->
+<div class="bg-surface rounded-2xl p-card-padding flex flex-col gap-stack-gap shadow-xl border border-white/5">
+<!-- Client Name Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-secondary text-xs uppercase tracking-tight">Client Name</label>
+<input class="bg-[#1A1A1A] border border-[#2C2C2C] rounded-xl px-4 py-3 text-primary focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all placeholder:text-white/20" placeholder="e.g. Jonathan Aris" type="text"/>
+</div>
+<!-- Upload Drop Zone -->
+<div class="relative group border-2 border-dashed border-[#2C2C2C] rounded-2xl p-8 flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-primary-container/50 transition-colors bg-[#1A1A1A]/50" id="drop-zone">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="upload">upload</span>
+</div>
+<div class="text-center">
+<p class="font-label-bold text-primary mb-1">Drag files or tap to upload</p>
+<p class="text-xs text-secondary">PDF, JPG, PNG up to 25MB</p>
+</div>
+<input class="absolute inset-0 opacity-0 cursor-pointer" multiple="" type="file"/>
+</div>
+<!-- Selected Files Chips -->
+<div class="flex flex-wrap gap-2 mt-2">
+<div class="bg-[#2C2C2C] text-primary px-3 py-1.5 rounded-full flex items-center gap-2 text-xs border border-white/5 group hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="description">description</span>
+<span>affidavit_v1.pdf</span>
+<button class="text-secondary hover:text-primary-container flex items-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="bg-[#2C2C2C] text-primary px-3 py-1.5 rounded-full flex items-center gap-2 text-xs border border-white/5 group hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="image">image</span>
+<span>id_scan_back.jpg</span>
+<button class="text-secondary hover:text-primary-container flex items-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+</div>
+<div class="bg-[#2C2C2C] text-primary px-3 py-1.5 rounded-full flex items-center gap-2 text-xs border border-white/5 group hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="description">description</span>
+<span>contract_signed.pdf</span>
+<button class="text-secondary hover:text-primary-container flex items-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary-container text-black font-label-bold py-4 rounded-full mt-4 active:scale-95 transition-transform hover:opacity-90 shadow-lg shadow-primary-container/10">
+                Process Documents
+            </button>
+</div>
+<!-- Processing Feedback -->
+<section class="mt-section-margin flex flex-col items-center">
+<div class="relative flex items-center justify-center mb-4">
+<svg class="w-32 h-32" viewbox="0 0 100 100">
+<circle class="text-[#2C2C2C]" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-container progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="263.89" stroke-dashoffset="109.95" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-stat text-primary text-2xl">58%</span>
+</div>
+</div>
+<div class="text-center">
+<p class="font-label-bold text-primary mb-1">Processing Archives</p>
+<p class="text-sm text-[#A0A0A0]">7 / 12 documents read</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 h-20 bg-surface/90 backdrop-blur-md flex justify-around items-center px-container-padding pb-safe">
+<a class="text-on-secondary-container flex flex-col items-center justify-center gap-1 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-bold text-[10px]">Home</span>
+</a>
+<a class="text-on-secondary-container flex flex-col items-center justify-center gap-1 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="folder">folder</span>
+<span class="font-label-bold text-[10px]">Cases</span>
+</a>
+<div class="relative -top-6">
+<button class="bg-primary-container text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-primary-container/40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined font-bold text-3xl" data-icon="add">add</span>
+</button>
+</div>
+<a class="text-primary-container font-bold flex flex-col items-center justify-center gap-1" href="#">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-bold text-[10px]">Upload</span>
+</a>
+<a class="text-on-secondary-container flex flex-col items-center justify-center gap-1 hover:text-primary-fixed-dim transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-bold text-[10px]">Settings</span>
+</a>
+</nav>
+<script>
+        // Progress ring animation simulation
+        const circle = document.querySelector('.progress-ring__circle');
+        const radius = circle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+
+        function setProgress(percent) {
+            const offset = circumference - (percent / 100 * circumference);
+            circle.style.strokeDashoffset = offset;
+        }
+
+        // Initialize at 58% as requested
+        setProgress(58);
+
+        // Simple Drag and Drop feedback
+        const dropZone = document.getElementById('drop-zone');
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-primary-container', 'bg-primary-container/5');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-primary-container', 'bg-primary-container/5');
+            }, false);
+        });
+    </script>
+</body></html>
