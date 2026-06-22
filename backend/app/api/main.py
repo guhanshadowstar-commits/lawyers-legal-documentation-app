@@ -13,7 +13,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 STORAGE_ROOT = PROJECT_ROOT / "backend" / "storage" / "raw"
 FRONTEND_INDEX = PROJECT_ROOT / "frontend" / "index.html"
 
-app = FastAPI(title="Lawyer's Legal Documentation App")
+app = FastAPI(title="LegalCore")
 
 
 @app.on_event("startup")

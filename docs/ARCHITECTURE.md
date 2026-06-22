@@ -1,4 +1,4 @@
-# Lawyer's Legal Documentation App — Workflow & Architecture
+# LegalCore — Workflow & Architecture
 
 ## Problem
 

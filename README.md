@@ -1,4 +1,4 @@
-# Lawyer's Legal Documentation App
+# LegalCore
 
 Micro-SaaS that ingests a client's batch of scanned property documents (any
 mix of English / Tamil / old Tamil script), extracts structured data via a

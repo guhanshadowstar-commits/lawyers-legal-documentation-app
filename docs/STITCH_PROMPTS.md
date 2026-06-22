@@ -1,4 +1,4 @@
-# Google Stitch prompts — Lawyer's Legal Documentation App
+# Google Stitch prompts — LegalCore
 
 Style direction: **dark mode, modern, energetic** — based on a fitness-app
 inspiration (near-black background, neon lime-green accent, rounded cards,
@@ -33,7 +33,7 @@ finance app, not a traditional law-firm document.
 
 ```
 Screen: "New Case File"
-Dark background. Top bar: small white text "LAWYER'S LEGAL DOCS" top-left,
+Dark background. Top bar: small white text "LEGALCORE" top-left,
 profile/avatar icon top-right.
 Bold white heading: "Start a New Case"
 Light gray subtext: "Upload your client's documents — we'll read, sort, and
