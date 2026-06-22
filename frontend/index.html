@@ -4,37 +4,49 @@
 <meta charset="UTF-8" />
 <title>LegalCore</title>
 <style>
-  :root { --navy:#1b2a4a; --gold:#b8860b; --bg:#f5f3ee; --card:#ffffff; --border:#ddd6c8; }
+  :root { --bg:#121212; --card:#1e1e1e; --border:#2c2c2c; --lime:#d6ff3f; --text:#ffffff; --muted-text:#a0a0a0; }
   * { box-sizing: border-box; }
-  body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); margin: 0; color: #222; }
-  header { background: var(--navy); color: #fff; padding: 20px 32px; }
-  header h1 { margin: 0; font-size: 22px; letter-spacing: 0.5px; }
-  header p { margin: 4px 0 0; color: #cdd3e0; font-size: 13px; }
+  body { font-family: -apple-system, "Inter", "Helvetica Neue", Arial, sans-serif; background: var(--bg); margin: 0; color: var(--text); }
+  header { background: #0a0a0a; color: var(--lime); padding: 20px 32px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  header svg { flex-shrink: 0; }
+  header h1 { margin: 0; font-size: 24px; letter-spacing: 0.5px; font-weight: 800; text-transform: uppercase; }
+  header p { margin: 0; color: var(--muted-text); font-size: 13px; font-weight: 400; text-transform: none; }
+  header .titles { display: flex; flex-direction: column; }
   main { max-width: 960px; margin: 28px auto; padding: 0 20px 60px; }
-  section { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin-bottom: 24px; }
-  section h2 { margin-top: 0; font-size: 17px; color: var(--navy); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 4px; }
-  label { display: block; font-size: 13px; margin: 12px 0 4px; color: #444; }
-  input[type=text] { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; }
-  input[type=file] { margin-top: 4px; }
-  button { background: var(--navy); color: #fff; border: none; padding: 10px 18px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 14px; }
-  button:hover { background: #243964; }
-  button:disabled { background: #999; cursor: not-allowed; }
+  section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+  section h2 { margin-top: 0; font-size: 16px; color: var(--text); border-bottom: 2px solid var(--lime); display: inline-block; padding-bottom: 4px; }
+  label { display: block; font-size: 13px; margin: 12px 0 4px; color: var(--muted-text); }
+  input[type=text] { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: #161616; color: var(--text); }
+  input[type=text]:focus { outline: none; border-color: var(--lime); }
+  input[type=file] { margin-top: 4px; color: var(--muted-text); }
+  button { background: var(--lime); color: #111; border: none; padding: 10px 20px; border-radius: 999px; cursor: pointer; font-size: 14px; font-weight: 700; margin-top: 14px; }
+  button:hover { background: #c2eb2e; }
+  button:disabled { background: #444; color: #888; cursor: not-allowed; }
   table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
   th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { background: #f0ede4; color: var(--navy); }
-  .pill { display:inline-block; background:#eee; border-radius:10px; padding:2px 8px; font-size:11px; margin-right:4px; }
-  .status { font-size: 13px; margin-top: 10px; color: #555; }
-  .status.error { color: #a33; }
-  .status.ok { color: #2a7a3b; }
-  pre.opinion { white-space: pre-wrap; font-family: Georgia, serif; background: #faf9f5; border: 1px solid var(--border); padding: 16px; border-radius: 4px; line-height: 1.5; }
-  .muted { color: #777; font-size: 12px; }
+  th { background: transparent; color: var(--lime); font-weight: 700; }
+  .pill { display:inline-block; background:#2a2a2a; border: 1px solid var(--lime); color: var(--lime); border-radius:999px; padding:2px 10px; font-size:11px; margin-right:4px; }
+  .status { font-size: 13px; margin-top: 10px; color: var(--muted-text); }
+  .status.error { color: #ff6b6b; }
+  .status.ok { color: var(--lime); }
+  pre.opinion { white-space: pre-wrap; font-family: Georgia, serif; background: #fdfcf8; color: #222; border: 1px solid var(--border); padding: 20px; border-radius: 12px; line-height: 1.5; }
+  .muted { color: var(--muted-text); font-size: 12px; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>LegalCore</h1>
-  <p>Upload a client's document batch, review the extracted chronology, and draft an opinion by survey number.</p>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 13 2.85 21.15a1 1 0 0 0 0 1.41l.59.59a1 1 0 0 0 1.41 0L13 14.5"/>
+    <path d="m16 16 6-6"/>
+    <path d="m8 8 6-6"/>
+    <path d="m9 7 8 8"/>
+    <path d="m21 11-8-8"/>
+  </svg>
+  <div class="titles">
+    <h1>LegalCore</h1>
+    <p>Upload a client's document batch, review the extracted chronology, and draft an opinion by survey number.</p>
+  </div>
 </header>
 
 <main>
