@@ -1,3 +1,5 @@
+from typing import List, Optional
+
 from pydantic import BaseModel
 
 
@@ -8,16 +10,16 @@ class Party(BaseModel):
 
 class ExtractedDocument(BaseModel):
     doc_type: str  # e.g. "sale deed", "gift deed", "partnership deed", "GPA"
-    doc_date: str | None  # ISO format YYYY-MM-DD if determinable, else null
-    language_detected: list[str]
-    original_script_excerpt: str | None
+    doc_date: Optional[str]  # ISO format YYYY-MM-DD if determinable, else null
+    language_detected: List[str]
+    original_script_excerpt: Optional[str]
     english_translation_summary: str
-    parties: list[Party]
-    survey_numbers: list[str]
-    property_schedule_text: str | None
-    consideration_amount: str | None
-    key_clauses: list[str]
-    confidence_notes: str | None
+    parties: List[Party]
+    survey_numbers: List[str]
+    property_schedule_text: Optional[str]
+    consideration_amount: Optional[str]
+    key_clauses: List[str]
+    confidence_notes: Optional[str]
 
 
 class DocumentRecord(BaseModel):

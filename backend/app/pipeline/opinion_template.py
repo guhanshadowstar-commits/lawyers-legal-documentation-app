@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from typing import Optional
 
 import anthropic
 
@@ -38,7 +39,7 @@ def _format_chain(rows: list[sqlite3.Row]) -> str:
     return "\n".join(entries)
 
 
-def draft_opinion(survey_number: str, chain_rows: list[sqlite3.Row], model: str | None = None) -> str:
+def draft_opinion(survey_number: str, chain_rows: list[sqlite3.Row], model: Optional[str] = None) -> str:
     model = model or os.environ.get("EXTRACTION_MODEL", "claude-sonnet-4-6")
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 

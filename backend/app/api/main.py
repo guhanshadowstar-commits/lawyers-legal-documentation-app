@@ -2,13 +2,16 @@ import json
 from pathlib import Path
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 
 from app.pipeline.extract import extract_document
 from app.pipeline.opinion_template import draft_opinion
 from app.pipeline.pdf_utils import file_to_page_images_b64
 from app.storage import db
 
-STORAGE_ROOT = Path(__file__).resolve().parent.parent.parent / "storage" / "raw"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+STORAGE_ROOT = PROJECT_ROOT / "backend" / "storage" / "raw"
+FRONTEND_INDEX = PROJECT_ROOT / "frontend" / "index.html"
 
 app = FastAPI(title="Lawyer's Legal Documentation App")
 
@@ -16,6 +19,11 @@ app = FastAPI(title="Lawyer's Legal Documentation App")
 @app.on_event("startup")
 def on_startup() -> None:
     db.init_db()
+
+
+@app.get("/")
+def serve_frontend():
+    return FileResponse(FRONTEND_INDEX)
 
 
 @app.post("/batches")

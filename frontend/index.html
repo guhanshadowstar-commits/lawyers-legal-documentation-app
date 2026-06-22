@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lawyer's Legal Documentation App</title>
+<style>
+  :root { --navy:#1b2a4a; --gold:#b8860b; --bg:#f5f3ee; --card:#ffffff; --border:#ddd6c8; }
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); margin: 0; color: #222; }
+  header { background: var(--navy); color: #fff; padding: 20px 32px; }
+  header h1 { margin: 0; font-size: 22px; letter-spacing: 0.5px; }
+  header p { margin: 4px 0 0; color: #cdd3e0; font-size: 13px; }
+  main { max-width: 960px; margin: 28px auto; padding: 0 20px 60px; }
+  section { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 24px; margin-bottom: 24px; }
+  section h2 { margin-top: 0; font-size: 17px; color: var(--navy); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 4px; }
+  label { display: block; font-size: 13px; margin: 12px 0 4px; color: #444; }
+  input[type=text] { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; }
+  input[type=file] { margin-top: 4px; }
+  button { background: var(--navy); color: #fff; border: none; padding: 10px 18px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 14px; }
+  button:hover { background: #243964; }
+  button:disabled { background: #999; cursor: not-allowed; }
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: #f0ede4; color: var(--navy); }
+  .pill { display:inline-block; background:#eee; border-radius:10px; padding:2px 8px; font-size:11px; margin-right:4px; }
+  .status { font-size: 13px; margin-top: 10px; color: #555; }
+  .status.error { color: #a33; }
+  .status.ok { color: #2a7a3b; }
+  pre.opinion { white-space: pre-wrap; font-family: Georgia, serif; background: #faf9f5; border: 1px solid var(--border); padding: 16px; border-radius: 4px; line-height: 1.5; }
+  .muted { color: #777; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Lawyer's Legal Documentation App</h1>
+  <p>Upload a client's document batch, review the extracted chronology, and draft an opinion by survey number.</p>
+</header>
+
+<main>
+
+  <section id="upload-section">
+    <h2>1. Upload a client's document batch</h2>
+    <label for="client_name">Client name</label>
+    <input type="text" id="client_name" placeholder="e.g. R. Subramaniam" />
+
+    <label for="files">Documents (PDF, JPG, PNG — select multiple)</label>
+    <input type="file" id="files" multiple accept=".pdf,.png,.jpg,.jpeg" />
+
+    <button id="upload_btn">Upload &amp; Process</button>
+    <div class="status" id="upload_status"></div>
+  </section>
+
+  <section id="documents-section" style="display:none;">
+    <h2>2. Batch documents (chronological order)</h2>
+    <p class="muted">Batch ID: <span id="batch_id_display"></span></p>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Type</th><th>Parties</th><th>Survey No.</th><th>Source file</th></tr>
+      </thead>
+      <tbody id="documents_table_body"></tbody>
+    </table>
+  </section>
+
+  <section id="survey-section" style="display:none;">
+    <h2>3. Trace a survey number</h2>
+    <label for="survey_number">Survey number</label>
+    <input type="text" id="survey_number" placeholder="e.g. 2/A" />
+    <button id="survey_btn">Find transaction chain</button>
+    <div class="status" id="survey_status"></div>
+    <table id="survey_table" style="display:none;">
+      <thead>
+        <tr><th>Date</th><th>Type</th><th>Parties</th><th>Source file</th></tr>
+      </thead>
+      <tbody id="survey_table_body"></tbody>
+    </table>
+    <button id="opinion_btn" style="display:none;">Draft legal opinion for this survey number</button>
+  </section>
+
+  <section id="opinion-section" style="display:none;">
+    <h2>4. Draft legal opinion</h2>
+    <pre class="opinion" id="opinion_text"></pre>
+  </section>
+
+</main>
+
+<script>
+const API = window.location.origin;
+let currentBatchId = null;
+let currentSurveyNumber = null;
+
+const uploadBtn = document.getElementById('upload_btn');
+const uploadStatus = document.getElementById('upload_status');
+
+uploadBtn.addEventListener('click', async () => {
+  const clientName = document.getElementById('client_name').value.trim();
+  const fileInput = document.getElementById('files');
+
+  if (!clientName) { setStatus(uploadStatus, 'Please enter a client name.', true); return; }
+  if (!fileInput.files.length) { setStatus(uploadStatus, 'Please select at least one document.', true); return; }
+
+  const formData = new FormData();
+  for (const f of fileInput.files) formData.append('files', f);
+
+  uploadBtn.disabled = true;
+  setStatus(uploadStatus, `Processing ${fileInput.files.length} document(s)... this calls AI per document and may take a while.`, false);
+
+  try {
+    const res = await fetch(`${API}/batches?client_name=${encodeURIComponent(clientName)}`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || `Upload failed (HTTP ${res.status})`);
+    }
+    const data = await res.json();
+    currentBatchId = data.batch_id;
+    setStatus(uploadStatus, `Done. Batch #${currentBatchId}: ${data.documents.length} document(s) processed.`, false, true);
+    await loadDocuments(currentBatchId);
+    document.getElementById('survey-section').style.display = 'block';
+  } catch (e) {
+    setStatus(uploadStatus, e.message, true);
+  } finally {
+    uploadBtn.disabled = false;
+  }
+});
+
+async function loadDocuments(batchId) {
+  const res = await fetch(`${API}/batches/${batchId}/documents`);
+  if (!res.ok) return;
+  const docs = await res.json();
+  document.getElementById('batch_id_display').textContent = batchId;
+  const tbody = document.getElementById('documents_table_body');
+  tbody.innerHTML = '';
+  for (const d of docs) {
+    const parties = (d.parties || []).map(p => `${p.name} (${p.role})`).join(', ');
+    const surveys = (d.survey_numbers || []).map(s => `<span class="pill">${s}</span>`).join(' ');
+    tbody.innerHTML += `<tr>
+      <td>${d.doc_date || '—'}</td>
+      <td>${d.doc_type || '—'}</td>
+      <td>${parties || '—'}</td>
+      <td>${surveys || '—'}</td>
+      <td class="muted">${d.source_filename}</td>
+    </tr>`;
+  }
+  document.getElementById('documents-section').style.display = 'block';
+}
+
+const surveyBtn = document.getElementById('survey_btn');
+const surveyStatus = document.getElementById('survey_status');
+
+surveyBtn.addEventListener('click', async () => {
+  const surveyNumber = document.getElementById('survey_number').value.trim();
+  if (!currentBatchId) { setStatus(surveyStatus, 'Upload a batch first.', true); return; }
+  if (!surveyNumber) { setStatus(surveyStatus, 'Enter a survey number.', true); return; }
+
+  setStatus(surveyStatus, 'Searching...', false);
+  document.getElementById('survey_table').style.display = 'none';
+  document.getElementById('opinion_btn').style.display = 'none';
+
+  try {
+    const res = await fetch(`${API}/batches/${currentBatchId}/survey/${encodeURIComponent(surveyNumber)}`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || 'No documents found for this survey number.');
+    }
+    const rows = await res.json();
+    const tbody = document.getElementById('survey_table_body');
+    tbody.innerHTML = '';
+    for (const r of rows) {
+      const parties = JSON.parse(r.parties_json || '[]').map(p => `${p.name} (${p.role})`).join(', ');
+      tbody.innerHTML += `<tr>
+        <td>${r.doc_date || '—'}</td>
+        <td>${r.doc_type || '—'}</td>
+        <td>${parties || '—'}</td>
+        <td class="muted">${r.source_filename}</td>
+      </tr>`;
+    }
+    document.getElementById('survey_table').style.display = 'table';
+    currentSurveyNumber = surveyNumber;
+    document.getElementById('opinion_btn').style.display = 'inline-block';
+    setStatus(surveyStatus, `Found ${rows.length} document(s) for survey number ${surveyNumber}.`, false, true);
+  } catch (e) {
+    setStatus(surveyStatus, e.message, true);
+  }
+});
+
+document.getElementById('opinion_btn').addEventListener('click', async () => {
+  const btn = document.getElementById('opinion_btn');
+  btn.disabled = true;
+  btn.textContent = 'Drafting...';
+  try {
+    const res = await fetch(`${API}/batches/${currentBatchId}/survey/${encodeURIComponent(currentSurveyNumber)}/opinion`, {
+      method: 'POST',
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || 'Opinion drafting failed.');
+    }
+    const data = await res.json();
+    document.getElementById('opinion_text').textContent = data.opinion;
+    document.getElementById('opinion-section').style.display = 'block';
+    document.getElementById('opinion-section').scrollIntoView({ behavior: 'smooth' });
+  } catch (e) {
+    setStatus(surveyStatus, e.message, true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Draft legal opinion for this survey number';
+  }
+});
+
+function setStatus(el, message, isError, isOk) {
+  el.textContent = message;
+  el.className = 'status' + (isError ? ' error' : isOk ? ' ok' : '');
+}
+</script>
+
+</body>
+</html>
