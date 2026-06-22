@@ -4,3 +4,5 @@ pymupdf
 anthropic
 python-multipart
 pydantic
+psycopg2-binary
+supabase

@@ -6,11 +6,10 @@ from fastapi.responses import FileResponse
 
 from app.pipeline.extract import extract_document
 from app.pipeline.opinion_template import draft_opinion
-from app.pipeline.pdf_utils import file_to_page_images_b64
-from app.storage import db
+from app.pipeline.pdf_utils import file_bytes_to_page_images_b64
+from app.storage import db, supabase_storage
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-STORAGE_ROOT = PROJECT_ROOT / "backend" / "storage" / "raw"
 FRONTEND_INDEX = PROJECT_ROOT / "frontend" / "index.html"
 
 app = FastAPI(title="LegalCore")
@@ -29,15 +28,13 @@ def serve_frontend():
 @app.post("/batches")
 async def create_batch(client_name: str, files: list[UploadFile] = File(...)):
     batch_id = db.create_batch(client_name)
-    batch_dir = STORAGE_ROOT / str(batch_id)
-    batch_dir.mkdir(parents=True, exist_ok=True)
 
     results = []
     for upload in files:
-        dest = batch_dir / upload.filename
-        dest.write_bytes(await upload.read())
+        file_bytes = await upload.read()
+        supabase_storage.upload_raw_file(batch_id, upload.filename, file_bytes)
 
-        page_images = file_to_page_images_b64(dest)
+        page_images = file_bytes_to_page_images_b64(upload.filename, file_bytes)
         extracted = extract_document(page_images)
         document_id = db.save_document(batch_id, upload.filename, extracted)
         results.append({"document_id": document_id, "filename": upload.filename, "doc_type": extracted.doc_type})

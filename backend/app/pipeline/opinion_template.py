@@ -1,5 +1,4 @@
 import os
-import sqlite3
 from typing import Optional
 
 import anthropic
@@ -23,7 +22,7 @@ Write in formal legal-opinion English. Mark any conclusion that depends on a doc
 confidence_notes as "subject to verification of original document"."""
 
 
-def _format_chain(rows: list[sqlite3.Row]) -> str:
+def _format_chain(rows: list[dict]) -> str:
     entries = []
     for i, row in enumerate(rows, start=1):
         entries.append(
@@ -39,7 +38,7 @@ def _format_chain(rows: list[sqlite3.Row]) -> str:
     return "\n".join(entries)
 
 
-def draft_opinion(survey_number: str, chain_rows: list[sqlite3.Row], model: Optional[str] = None) -> str:
+def draft_opinion(survey_number: str, chain_rows: list[dict], model: Optional[str] = None) -> str:
     model = model or os.environ.get("EXTRACTION_MODEL", "claude-sonnet-4-6")
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 

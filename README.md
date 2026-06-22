@@ -13,10 +13,16 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full workflow design.
 cd backend
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # fill in ANTHROPIC_API_KEY
+cp .env.example .env   # fill in ANTHROPIC_API_KEY, DATABASE_URL, SUPABASE_URL, SUPABASE_KEY
 export $(cat .env | xargs)
 uvicorn app.api.main:app --reload --app-dir .
 ```
+
+Storage: Postgres (via `DATABASE_URL`) for extracted data, Supabase Storage
+(bucket `case-documents`, via `SUPABASE_URL`/`SUPABASE_KEY`) for the original
+uploaded files. Both point at a Supabase project — create one free at
+supabase.com, grab the connection string and project keys from
+Project Settings, and create a Storage bucket named `case-documents`.
 
 Open http://127.0.0.1:8000/docs for the interactive API (Swagger UI).
 
