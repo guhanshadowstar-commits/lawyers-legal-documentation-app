@@ -4,3 +4,4 @@ __pycache__/
 .env
 backend/data/
 backend/storage/raw/
+.DS_Store
