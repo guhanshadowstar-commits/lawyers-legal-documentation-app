@@ -13,7 +13,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full workflow design.
 cd backend
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # fill in ANTHROPIC_API_KEY, DATABASE_URL, SUPABASE_URL, SUPABASE_KEY
+cp .env.example .env   # fill in GEMINI_API_KEY, DATABASE_URL, SUPABASE_URL, SUPABASE_KEY
 export $(cat .env | xargs)
 uvicorn app.api.main:app --reload --app-dir .
 ```

@@ -1,7 +1,9 @@
+import base64
 import json
 import os
 
-import anthropic
+from google import genai
+from google.genai import types
 
 from app.models.schemas import ExtractedDocument
 
@@ -27,32 +29,24 @@ following as JSON matching exactly this schema:
 Return ONLY the JSON object, no other text."""
 
 
-DEFAULT_MODEL = os.environ.get("EXTRACTION_MODEL", "claude-sonnet-4-6")
+DEFAULT_MODEL = os.environ.get("EXTRACTION_MODEL", "gemini-2.0-flash")
 
 
 def extract_document(page_images_b64: list[str], model: str = DEFAULT_MODEL) -> ExtractedDocument:
-    """Send all pages of one document to Claude in a single call and parse the structured extraction."""
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    """Send all pages of one document to Gemini in a single call and parse the structured extraction."""
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-    content = [
-        {
-            "type": "image",
-            "source": {"type": "base64", "media_type": "image/png", "data": img},
-        }
+    parts = [
+        types.Part.from_bytes(data=base64.b64decode(img), mime_type="image/png")
         for img in page_images_b64
     ]
-    content.append({"type": "text", "text": EXTRACTION_PROMPT})
+    parts.append(types.Part.from_text(text=EXTRACTION_PROMPT))
 
-    response = client.messages.create(
+    response = client.models.generate_content(
         model=model,
-        max_tokens=4096,
-        messages=[{"role": "user", "content": content}],
+        contents=parts,
+        config=types.GenerateContentConfig(response_mime_type="application/json"),
     )
 
-    raw_text = response.content[0].text.strip()
-    if raw_text.startswith("```"):
-        raw_text = raw_text.strip("`")
-        if raw_text.startswith("json"):
-            raw_text = raw_text[4:]
-    data = json.loads(raw_text)
+    data = json.loads(response.text)
     return ExtractedDocument(**data)

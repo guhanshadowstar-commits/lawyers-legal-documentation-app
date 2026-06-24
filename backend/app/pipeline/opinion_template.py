@@ -1,7 +1,7 @@
 import os
 from typing import Optional
 
-import anthropic
+from google import genai
 
 # PLACEHOLDER: replace with the firm's actual legal opinion format once supplied.
 OPINION_PROMPT_TEMPLATE = """You are a senior property lawyer drafting a Legal Opinion on Title for survey \
@@ -39,15 +39,11 @@ def _format_chain(rows: list[dict]) -> str:
 
 
 def draft_opinion(survey_number: str, chain_rows: list[dict], model: Optional[str] = None) -> str:
-    model = model or os.environ.get("EXTRACTION_MODEL", "claude-sonnet-4-6")
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    model = model or os.environ.get("EXTRACTION_MODEL", "gemini-2.0-flash")
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
     prompt = OPINION_PROMPT_TEMPLATE.format(
         survey_number=survey_number, chain_text=_format_chain(chain_rows)
     )
-    response = client.messages.create(
-        model=model,
-        max_tokens=4096,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return response.content[0].text
+    response = client.models.generate_content(model=model, contents=prompt)
+    return response.text

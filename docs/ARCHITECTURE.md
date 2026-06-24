@@ -23,7 +23,7 @@ handwriting or print). The firm needs to:
 ## Approach
 
 LLM-based vision pipeline: scanned pages are sent directly to a multimodal
-model (Claude) which performs OCR, language identification, translation, and
+model (Google Gemini) which performs OCR, language identification, translation, and
 structured extraction in a single pass per document. This is chosen over a
 dedicated OCR engine because old/handwritten Tamil and mixed-script documents
 need contextual reasoning that classical OCR (Tesseract etc.) handles poorly;
@@ -99,6 +99,6 @@ Upload batch (N files, PDFs or images)
 
 - Backend: Python, FastAPI, SQLite (MVP; swappable for Postgres later)
 - PDF → image: PyMuPDF (`fitz`)
-- Vision/extraction: Anthropic Claude API (multimodal)
+- Vision/extraction: Google Gemini API (multimodal, free tier)
 - Frontend: deferred — MVP is API-first, exercised via a simple upload script
   / Swagger UI (`/docs`) until a UI is prioritized.
